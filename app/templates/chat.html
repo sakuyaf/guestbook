@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>chat</title>
+</head>
+<style>
+    .talk span{
+        background-color:aliceblue;
+        border-radius: 5px;
+        padding:0px 10px;
+        color:#000000;
+        font-size: 20px;
+    }
+    .benji{
+        padding-top: 200px;
+        position: static;
+    }
+</style>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.12.4.min.js"></script>
+<script>
+    $(function () {
+        $text = $('#talkwords')
+        $sendbutton = $('#talksend')
+        $mesbox = $('#words')
+
+        $sendbutton.click(function () {
+           var stextcon = $text.val()
+               if(stextcon == ''){
+                   alert('请输入内容')
+               }
+            var smescontent = ''
+               smescontent = '<div class="talk" ><span> ' + stextcon + '</span></div>'
+            $mesbox.html($mesbox.html() + smescontent)
+
+            $text.val('')
+        })
+    })
+</script>
+<body>
+<div class="talk" id="words"><span>1111</span></div>
+<center>
+    <div class="benji">
+<input type="text" id="talkwords">
+<input type="button" value="send" id="talksend">
+    </div>
+</center>
+</body>
+</html>

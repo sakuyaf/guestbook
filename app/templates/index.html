@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>留言板</title>
+</head>
+<script type="text/javascript" src="login.js"></script>
+<body>
+<div>
+            Message Board:
+            <a href="{{ url_for('index') }}">Home</a>
+            {% if current_user.is_anonymous %}
+            <a href="{{ url_for('login') }}">Login</a>
+            {% else %}
+            <a href="{{ url_for('logout') }}">Logout</a>
+            {% endif %}
+</div>
+<center>
+
+<div class="title">
+<h1>留言板</h1>
+    <p id="ccc"></p>
+</div>
+    <button type="button" onclick="gotoregist()">注册</button>
+    <button type="button" onclick="f()">登录</button>
+<div class="list">
+<form action="{{ url_for('index') }}" method="post">
+    <table>
+        <tr>
+            <th>姓名</th>
+            <td>
+                <input type="text" size="20" name="say_name">
+            </td>
+        </tr>
+        <tr>
+            <th>内容</th>
+            <td>
+                <textarea rows="5" cols="40" name="say"></textarea>
+            </td>
+        </tr>
+    </table>
+</form>
+</div>
+<p>
+    <button type="submit">提交</button>
+</p>
+<h2>历史信息</h2>
+<table border="2">
+    <thead>
+    <tr>
+        <th>用户</th>
+        <th>内容</th>
+        <th>留言时间</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for say in says %}
+    <tr>
+        <td>{{ say['name'] }}</td>
+        <td>{{ say['text'] }}</td>
+        <td>{{ say['date'] }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</center>
+</body>
+</html>
